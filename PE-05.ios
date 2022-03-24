@@ -1,0 +1,64 @@
+enable
+configure terminal
+
+no ip domain-lookup
+hostname PE-QUICK-05
+line console 0
+privilege level 15
+exit
+
+router ospf 10
+router-id 5.5.5.5
+network 10.33.0.2 0.0.0.0 area 0
+network 10.13.0.2 0.0.0.0 area 0
+network 10.22.0.2 0.0.0.0 area 0
+network 10.41.0.2 0.0.0.0 area 0
+network 10.51.0.1 0.0.0.0 area 0
+network 5.5.5.5 255.255.255.255 area 0
+exit
+
+banner motd %
+********************************************************
+PE-QUICK
+
+5.5.5.5/32
+********************************************************
+%
+
+interface ethernet 0/0
+ip address 10.51.0.1 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/2
+ip address 10.41.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/3
+ip address 10.33.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/1
+ip address 10.22.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 1/0
+ip address 10.13.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+end
+wr
+!

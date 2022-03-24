@@ -1,0 +1,64 @@
+enable
+configure terminal
+
+no ip domain-lookup
+hostname PE-QUICK-03
+line console 0
+privilege level 15
+exit
+
+router ospf 10
+router-id 3.3.3.3
+network 10.14.0.2 0.0.0.0 area 0
+network 10.21.0.2 0.0.0.0 area 0
+network 10.31.0.1 0.0.0.0 area 0
+network 10.32.0.1 0.0.0.0 area 0
+network 10.33.0.1 0.0.0.0 area 0
+network 3.3.3.3 255.255.255.255 area 0
+exit
+
+banner motd %
+********************************************************
+PE-QUICK
+
+3.3.3.3/32
+********************************************************
+%
+
+interface ethernet 0/0
+ip address 10.31.0.1 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/2
+ip address 10.21.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/3
+ip address 10.32.0.1 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 0/1
+ip address 10.33.0.1 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 1/0
+ip address 10.14.0.2 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+end
+wr
+!
