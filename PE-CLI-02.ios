@@ -2,51 +2,60 @@ enable
 configure terminal
 
 no ip domain-lookup
-hostname PE-QUICK-01
+hostname PE-CLI-02
 line console 0
 privilege level 15
 exit
 
 router ospf 10
-router-id 1.1.1.1
-network 10.11.0.1 0.0.0.0 area 0
-network 10.12.0.1 0.0.0.0 area 0
-network 10.13.0.1 0.0.0.0 area 0
-network 10.14.0.1 0.0.0.0 area 0
-network 1.1.1.1 255.255.255.255 area 0
+router-id 2.2.2.2
+network 10.11.0.2 0.0.0.0 area 0
+network 10.21.0.1 0.0.0.0 area 0
+network 10.22.0.1 0.0.0.0 area 0
+network 10.23.0.1 0.0.0.0 area 0
+network 10.24.0.1 0.0.0.0 area 0
+network 2.2.2.2 255.255.255.255 area 0
 exit
 
 banner motd %
 ********************************************************
-PE-QUICK
+PE-CLI-02
+PE do lado do Cliente 
 
-1.1.1.1/32
+2.2.2.2/32
 ********************************************************
 %
 
 interface ethernet 0/0
-ip address 10.11.0.1 255.255.255.252
+ip address 10.22.0.1 255.255.255.252
 ip ospf network point-to-point
 shutdown
 no shutdown
 exit
 
 interface ethernet 0/2
-ip address 10.12.0.1 255.255.255.252
+ip address 10.21.0.1 255.255.255.252
 ip ospf network point-to-point
 shutdown
 no shutdown
 exit
 
 interface ethernet 0/3
-ip address 10.13.0.1 255.255.255.252
+ip address 10.23.0.1 255.255.255.252
 ip ospf network point-to-point
 shutdown
 no shutdown
 exit
 
 interface ethernet 0/1
-ip address 10.14.0.1 255.255.255.252
+ip address 10.24.0.1 255.255.255.252
+ip ospf network point-to-point
+shutdown
+no shutdown
+exit
+
+interface ethernet 1/0
+ip address 10.11.0.2 255.255.255.252
 ip ospf network point-to-point
 shutdown
 no shutdown
