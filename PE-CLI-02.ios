@@ -8,6 +8,7 @@ privilege level 15
 exit
 
 router ospf 10
+mpls ldp autoconfig
 router-id 2.2.2.2
 network 10.11.0.2 0.0.0.0 area 0
 network 10.21.0.1 0.0.0.0 area 0
